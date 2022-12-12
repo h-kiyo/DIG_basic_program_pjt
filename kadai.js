@@ -1,59 +1,42 @@
-const button = document.querySelector('#gators_num_get');
-//console.log("button: ",button)
-const paragraph = document.querySelector('#gators_num_out_msg');
+//ボタン、コンソール、表示などの定義
+const button_get = document.querySelector('#gators_num_get');
+// const button_doki = document.getElementsByClassName('button dokidoki');
+const gators_num_in = document.querySelector('#gators_num');
+const num_out_msg = document.querySelector('#num_out_msg');
 const gators_img = document.querySelector('#gators_img');
-//console.log("paragraph: ",paragraph)
-console.log("gators_img: ",gators_img)
 
-button.addEventListener('click', updateButton);
+//ボタンクラスの取得　グローバル変数
+const buttonClass = document.querySelector('#gators_num_get');
+
+//console.log("gators_img: ",gators_img)
+
+//クリック時のコールバック
+button_get.addEventListener('click', updateButton);
+
+//ボックスに入力された時のコールバック
+gators_num_in.addEventListener('change', updateform);
 
 //ボタンが押された時の挙動
 function updateButton() {
     //ボックスの値を id =#gators_num_out_msgに入力
     gators_num_out_msg = document.getElementById('gators_num').value;
-    paragraph.innerText = "Summon gators number:" +gators_num_out_msg
-    console.log("gators_num_out_msg: ",gators_num_out_msg)
+    num_out_msg.innerText = "Summon gators number:" +gators_num_out_msg;
+    console.log("gators_num_out_msg: ",gators_num_out_msg);
     gators_img.innerText = "🐊".repeat(gators_num_out_msg) ;
-    // for(let i =0; i<=gators_num_out_msg; i++){
-    //     gators_img.innerText = "🐊" ;
-    // }
-
 }
 
-//飛び跳ねるボタン
-const button_jump = document.getElementById("button");
-button_jump.addEventListener("mousedown", () => {button_jump.classList.add("jump");});
-button_jump.addEventListener("animationend", () => {button_jump.classList.remove("jump");});
-button_jump.addEventListener("animationcancel", () => {button_jump.classList.remove("jump");});
-
-
-
-//文字をピョンピョンさせてみる
-function randomCharactor(c) {
-    //跳ねさせる要素をすべて取得
-    var randomChar = document.getElementsByClassName(c);
-    //for で総当たり
-    for (var i = 0; i < randomChar.length; i++) {
-        //クロージャー
-        (function(i) {
-            //i 番目の要素、テキスト内容、文字列の長さを取得
-            var randomCharI = randomChar[i];
-            var randomCharIText = randomCharI.textContent;
-            var randomCharLength = randomCharIText.length;
-
-            //何番目の文字を跳ねさせるかをランダムで決める
-            var Num = ~~(Math.random() * randomCharLength);
-
-            //跳ねさせる文字を span タグで囲む、それ以外の文字と合わせて再び文字列を作る
-            var newRandomChar = randomCharIText.substring(0, Num) + "<span>" + randomCharIText.charAt(Num) + "</span>" + randomCharIText.substring(Num + 1, randomCharLength);
-            randomCharI.innerHTML = newRandomChar;
-
-            //アニメーションが終わったら再び関数を発火させる
-            document.getElementsByClassName(c)[0].children[0].addEventListener("animationend", function() {
-                randomCharactor(c)
-            }, false)
-        })(i)
+//ボックスに入力された時の挙動
+//動的にclassを割り当て、適応するcssを変える。
+//https://1-notes.com/javascript-operate-class-name/#
+function updateform(){
+    gators_num_in_msg = document.getElementById('gators_num').value;
+    console.log("gators_num_in_msg: ",gators_num_in_msg);
+    console.log("buttonClass: ",buttonClass);
+    if(gators_num_in_msg >=10){
+        console.log("Class change");
+        buttonClass.classList.replace('button1','button1_dokidoki');
+    }else{
+        console.log("Class No change");
+        buttonClass.classList.replace('button1_dokidoki','button1');
     }
 }
-//クラス名が pyonpyon のクラスを跳ねさせる
-randomCharactor("pyonpyon");
