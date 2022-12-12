@@ -3,56 +3,64 @@
 
 <head>
     <link rel="stylesheet" href="kadai.css">
-    <script src="https://kit.fontawesome.com/3e1a1f94fc.js" crossorigin="anonymous"></script>
-    <!-- <script defer src="https://kit.fontawesome.com/3e1a1f94fc.js"crossorigin="anonymous"></script> -->
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-    
+    <title>最終課題</title>
+    <h1 class="head_title">
+        <p class="top_title">
+            最終課題　kiyokami
+        </p>
+    </h1>
 </head>
 
 <body>
-    <div class="topbox" >Summon box<br>
-        <label for="name">gators number:</label>
-        <input type="number" id="gators_num" name="gators_num" required
-        min="10" max="100" size="100" value="10"><br>
-        <input type="button" id="gators_num_get"
-        value="ワニ放出！"><br>
-    </div>
-
-    <div class="button_box">button field<br>
-        <a><span class="button-simple">ただのボタン</span></a><br><br>
-        <span class="button-simple dokidoki">ドキドキしてるボタン</span><br><br>
-        <a><span class="button-simple purupuru2">ぷるぷる動くボタン</span></a><br><br>
-        <div id="button"><i class="fa-solid fa-helicopter fa-5x"></i></div><br>
+    <div class="top_box" >概要:インタラクティブなボタンアクションをやってみた<br>
+        <h2 class="top_box_text">
+            <p>実装したい機能</p>
+            <ul>
+                <li>テキストBOXに入力が完了したら、ボタンを押したくなる挙動をさせたい。</li>
+                <li>入力BOXの内容によってボタンアクションが変わるようにしたい</li>
+            </ul>
+            <P>NintendoのUIはそんな感じで作られていたような気がする。</P>
+        </h2>
 
     </div>
 
-    <div class="secondbox" >text field<br>
-        <h3>
-            <p class="gb">文字が<span class="pyonpyon">ピョンピョン</span>とランダムで跳ねます。</p>
+    <div class="button_box">実装した内容をテストする手順<br>
+        <h3 class="button_box_text">
+            <ul>
+                <li>”ワニ放出！”ボタンにマウスを合わせると色が変化</li>
+                <li>gators numberに数値を入力。ボタン以外の部分をクリック</li>
+                <li>10以上ならボタンアクションを実行</li>
+                <li>10未満ならボタンアクションを実行しない</li>
+            </ul><br>
         </h3>
-        
+        <h4>
+            <label for="name">gators number:</label>
+            <input type="number" id="gators_num" name="gators_num" required
+            min="10" max="100" size="100" value=""><br><br>
+            <p><input class="button1" type="button" id="gators_num_get" value="ワニ放出！"><br></p>
+            <!-- <p><input class="button1_dokidoki" type="button" id="gators_num_get" value="ワニ放出！"><br></p> -->
+
+            <p id="num_out_msg">
+                <label for="name">Summon gators number:</label>
+                <p id="gators_img"></p>
+        </h4>
     </div>
 
-    <div class="actionbox">ボタンアクション
-        <section class="icon-list">
-            <!-- Copyright Nintendo -->
-            <i class="nes-mario"></i>
-            <i class="nes-ash"></i>
-            <i class="nes-pokeball"></i>
-            <i class="nes-bulbasaur"></i>
-            <i class="nes-charmander"></i>
-            <i class="nes-squirtle"></i>
-            <i class="nes-kirby"></i>
-          </section>
-    </div>
-    <div class="">
-
+    <div class="reference_box" >Reference<br>
+        <ul>
+            <li>参考ページ<br>
+                <a href="https://haugenic.com/?p=1051">ぷるぷる動くボタンなどアニメーションボタン</a>
+        </li>
+            <li>マウスオーバー  :hover  ※プレビューではうまく動作しない。</li>            
+            <li>イベントリスナー　addEventListener<br>clickとchangeを使用<br>それぞれにコールバック関数を指定してアクションを実装</li>
+            <li>入力によって適応するCSSの変換 ⇨ クラsス名の置換<br>.classList.replace<br>もっといいやり方がありそう。</li>
+        </ul>
+        <p id="end">以上</p>
     </div>
 
+    <div>
 
-
-
+    </div>
 
     <script src="kadai.js"></script>
 </body>
